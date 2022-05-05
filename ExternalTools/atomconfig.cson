@@ -1,0 +1,9 @@
+"*":
+  core:
+    customFileTypes:
+      "source.assembly.65816.cc65-816-toolchain": [
+        "inc"
+        "s"
+        "lst"
+      ]
+#add this to your Atom config.cson for Syntax Highlighting
