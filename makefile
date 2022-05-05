@@ -13,6 +13,7 @@
 title = lorom-template
 version = 0.06
 
+
 # Space-separated list of asm files without .s extension
 # (use a backslash to continue on the next line)
 objlist = \
@@ -25,17 +26,20 @@ brrlist = \
 
 AS65 := ca65
 LD65 := ld65
-CFLAGS65 := -g
 objdir := obj/snes
 srcdir := src
 imgdir := tilesets
+
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+mkfile_dir := $(dir $(mkfile_path))
 
 # If it's not bsnes, it's just BS.  But I acknowledge that being
 # stuck on an old Atom laptop is BS.  Atom N450 can't run bsnes at
 # full speed, but the Atom-based Pentium N3710 can.
 ifndef SNESEMU
 #SNESEMU := xterm -e zsnes -d
-SNESEMU := bsnes
+
+SNESEMU := EmuHawk
 endif
 
 # game-music-emu by blargg et al.
@@ -62,13 +66,20 @@ wincwd := $(shell pwd | sed -e "s'/'\\\\\\\\'g")
 # When you type make without a target name, make will try
 # to build the first target.  So unless you're trying to run
 # NO$SNS in Wine, you should move run above nocash-run.
+
+
 run: $(title).sfc
-	$(SNESEMU) $<
+	$(SNESEMU) $(mkfile_dir)$<
+
+
+build: $(title).sfc
+	echo "BUILT COMPLETE:" $<
+	echo $(shell pwd)
 
 # Per Martin Korth on 2014-09-16: NO$SNS requires absolute
 # paths because he screwed up and made the filename processing
 # too clever.
-# Not default 
+# Not default
 nocash-run: $(title).sfc
 	wine "C:\\Program Files (x86)\\nocash\\no\$$sns.exe" "Z:$(wincwd)\\$(title).sfc"
 
@@ -81,12 +92,13 @@ all: $(title).sfc $(title).spc
 clean:
 	-rm $(objdir)/*.o $(objdir)/*.chrsfc $(objdir)/*.chrgb
 	-rm $(objdir)/*.wav $(objdir)/*.brr $(objdir)/*.s
+	-rm $(objdir)/*.lst
 
 dist: zip
-zip: $(title)-$(version).zip
-$(title)-$(version).zip: zip.in all README.md $(objdir)/index.txt
-	$(PY) tools/zipup.py $< $(title)-$(version) -o $@
-	-advzip -z3 $@
+zip: $(title)-$(version).sc.zip
+$(title)-$(version).sc.zip: zip.in all README.md $(objdir)/index.txt
+	$(PY) tools/zipup.py $< $(title)-$(version).sc -o $@
+	#-advzip -z3 $@
 
 # Build zip.in from the list of files in the Git tree
 zip.in:
@@ -112,10 +124,10 @@ spcmap.txt $(title).spc: spc.cfg $(objlistospc)
 	$(LD65) -o $(title).spc -m spcmap.txt -C $^
 
 $(objdir)/%.o: $(srcdir)/%.s $(srcdir)/snes.inc $(srcdir)/global.inc
-	$(AS65) $(CFLAGS65) $< -o $@
+	$(AS65) -l $@.lst -g $< -o $@
 
 $(objdir)/%.o: $(objdir)/%.s
-	$(AS65) $(CFLAGS65) $< -o $@
+	$(AS65) -l $@.lst -g $< -o $@
 
 $(objdir)/mktables.s: tools/mktables.py
 	$< > $@
