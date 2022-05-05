@@ -1,0 +1,7 @@
+Install Git
+Install Make
+Install Python
+Install Pillow
+Install cc65 (+Path)
+Install Emulator (+Path)
+Install Zip and Unzip (+Path)
