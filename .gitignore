@@ -20,3 +20,5 @@ __pycache__/
 
 # this is Super NES homebrew, not DSiWare
 *.DS_Store
+
+/ExternalTools/atom/build-make/atom-build-make.lnk
