@@ -169,6 +169,7 @@ forever:
 
   ; wait for control reading to finish
   lda #$01
+  nop ;TEMPORARY MEASURE // For Timing Detection Code //################################################
 padwait:
   bit VBLSTATUS
   bne padwait
