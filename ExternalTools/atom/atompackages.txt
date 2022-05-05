@@ -1,0 +1,28 @@
+## BUILD ##
+
+build
+  apm install build
+  
+build-make
+  apm install https://github.com/AtomBuild/atom-build-make
+  +change make.js in source
+  +put atom-build-make.lnk in config
+  
+busy-signal
+
+
+
+## SYNTAX ##
+
+language-65asm
+
+
+
+## CONVENIENCE ##
+
+minimap
+minimap-plus
+minimap-git-diff
+minimap-bookmarks
+click-bookmarks
+  
