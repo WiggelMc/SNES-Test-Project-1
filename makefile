@@ -27,6 +27,7 @@ brrlist = \
 AS65 := ca65
 LD65 := ld65
 objdir := obj/snes
+lstdir := lst/snes
 srcdir := src
 imgdir := tilesets
 
@@ -92,7 +93,7 @@ all: $(title).sfc $(title).spc
 clean:
 	-rm $(objdir)/*.o $(objdir)/*.chrsfc $(objdir)/*.chrgb
 	-rm $(objdir)/*.wav $(objdir)/*.brr $(objdir)/*.s
-	-rm $(objdir)/*.lst
+	-rm $(objdir)/*.lst $(lstdir)/*.lst
 
 dist: zip
 zip: $(title)-$(version).sc.zip
@@ -124,10 +125,10 @@ spcmap.txt $(title).spc: spc.cfg $(objlistospc)
 	$(LD65) -o $(title).spc -m spcmap.txt -C $^
 
 $(objdir)/%.o: $(srcdir)/%.s $(srcdir)/snes.inc $(srcdir)/global.inc
-	$(AS65) -l $@.lst -g $< -o $@
+	$(AS65) -l $(lstdir)/$(*F).lst -g $< -o $@
 
 $(objdir)/%.o: $(objdir)/%.s
-	$(AS65) -l $@.lst -g $< -o $@
+	$(AS65) -l $(lstdir)/$(*F).lst -g $< -o $@
 
 $(objdir)/mktables.s: tools/mktables.py
 	$< > $@

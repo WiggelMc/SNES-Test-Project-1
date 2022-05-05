@@ -5,6 +5,9 @@
 *.chrgb
 *.chrsfc
 /obj/snes/*
+!/obj/*/index.txt
+/lst/snes/*
+!/lst/*/index.txt
 /zip.in
 /map.txt
 /spcmap.txt
