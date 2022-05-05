@@ -7,6 +7,7 @@ build-make
   apm install https://github.com/AtomBuild/atom-build-make
   +change make.js in source
   +put atom-build-make.lnk in config
+  +change "Start in" Path of atom-build-make.lnk to Project Directory
   
 busy-signal
 
