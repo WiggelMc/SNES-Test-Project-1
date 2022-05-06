@@ -36,14 +36,15 @@ Install Atom Portable
   * https://github.com/atom/atom/tree/v1.60.0
     * All Files [to Dir]
   
-    * clone repository
-    * close Atom<br><br>
+    * Download atom-preset:<br>https://github.com/WiggelMc/SNES-Test-Project-1/raw/master/ExternalTools/atom/atom-preset-v1.zip
     * copy .atom Folder from atom-preset.zip [to Dir]
+  
+    * Start Atom and clone this Repository
   
     * duplicate "atom-build-make.lnk" as "atom-build-make-p.lnk" in same folder [in repo Dir]
     * change "Start in" Path of "atom-build-make-p.lnk" to Project Directory
   
-    * start Atom
+    * Restart Atom
   
 \<Optional\> Install Jetbrains Mono
   * https://www.jetbrains.com/de-de/lp/mono/
