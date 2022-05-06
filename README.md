@@ -98,4 +98,4 @@ SNESProgramming (root)
 *[!] Folder in "Path"
 
 ---
-MORE INFO: "https://github.com/pinobatch/nrom-template/"
+MORE INFO: https://github.com/pinobatch/nrom-template/
