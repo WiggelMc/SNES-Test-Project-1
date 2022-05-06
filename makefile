@@ -72,10 +72,15 @@ wincwd := $(shell pwd | sed -e "s'/'\\\\\\\\'g")
 run: $(title).sfc
 	$(SNESEMU) $(mkfile_dir)$<
 
-
-build: $(title).sfc
-	echo "BUILT COMPLETE:" $<
+build-only: $(title).sfc
+	echo "BUILD COMPLETE:" $<
 	echo $(shell pwd)
+
+load-only:
+	$(SNESEMU) $(mkfile_dir)$(title).sfc
+	
+
+
 
 # Per Martin Korth on 2014-09-16: NO$SNS requires absolute
 # paths because he screwed up and made the filename processing
