@@ -19,9 +19,9 @@ export const config = {
   },
   gitBashPath: {
     title: 'Path to Git-Bash',
-    description: 'Path to lnk-File which links to bash.exe (in /Git/bin/) and is executed in Project Folder (cannot have spaces)',
+    description: 'Path to lnk-File which links to bash.exe (in /Git/bin/) and is executed in Project Folder (cannot have spaces) [Restart required]',
     type: 'string',
-    default: 'C:/atom-build-make.lnk',
+    default: './ExternalTools/atom/build-make/atom-build-make-p.lnk',
     order: 3
   }
 };
