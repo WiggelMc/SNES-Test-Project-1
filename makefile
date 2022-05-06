@@ -78,7 +78,7 @@ build-only: $(title).sfc
 
 load-only:
 	$(SNESEMU) $(mkfile_dir)$(title).sfc
-	
+
 
 
 
