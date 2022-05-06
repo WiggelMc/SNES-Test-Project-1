@@ -44,11 +44,10 @@ Install Atom Portable
     * duplicate "atom-build-make.lnk" as "atom-build-make-p.lnk" in same folder [in repo Dir]
     * change "Start in" Path of "atom-build-make-p.lnk" to Project Directory
   
-    * Restart Atom
-  
 \<Optional\> Install Jetbrains Mono
   * https://www.jetbrains.com/de-de/lp/mono/
     * Extract and Install "/fonts/ttf/JetBrainsMono-Thin.ttf"
+    * A Restart of Atom is required for the Font to be loaded
 
 
 
