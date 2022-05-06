@@ -29,8 +29,6 @@
     fontSize: 18
     invisibles:
       eol: " "
-  "exception-reporting":
-    userId: "b34adf64-1223-4b1a-8a3a-b3fca12bf229"
   "git-diff":
     showIconsInEditorGutter: true
   "mcfunction-novum":
