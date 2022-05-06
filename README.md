@@ -1,131 +1,101 @@
-IF THIS FILE HAS NO LINE BREAKS:  View it in a web browser. 
 
-LoROM template
-==============
+Install Guide
+====
+<br><br>
+Install Git
+* https://git-scm.com/
+  * Install
 
-This is a minimal working program for the Super Nintendo
-Entertainment System using the LoROM (mode $20) mapper.
+Install Make *[will be automatically added to Path]*
+  * https://sourceforge.net/projects/ezwinports/files/make-4.3-without-guile-w32-bin.zip/download
+    *  merge into "Git/mingw64/" (no replace / skip duplicates)
 
-Concepts illustrated:
+Install Python *[will be automatically added to Path]*
+  * https://www.python.org/
+    *  Install
+  
+Install Pillow
+  * Run in Command Line: `py -m pip install Pillow`
 
-* internal header (with correct checksum) and init code
-* setting up a static background
-* loading data from multiple 32 KiB banks in a LoROM
-* structure of a game loop
-* automatic controller reading
-* 8.8 fixed-point arithmetic
-* acceleration-based character movement physics
-* sprite drawing and animation, with horizontal flipping
-* makefile-controlled conversion of graphics to tile data in
-  both 2-bit-per-pixel and 4-bit-per-pixel formats
-* booting the S-SMP (SPC700 audio CPU)
-* writing SPC700 code using 65C02 syntax using blargg's
-  [SPC700 macro pack] for ca65
-* use of SPC700 timers to control playback
-* reading a sequence of pitches and converting them to frequencies
-* makefile-controlled compression of sampled sound to BRR format
-* creating an SPC700 state file for SPC music players
+Install cc65 (+ add to Path)
+  * http://cc65.github.io/cc65/
+    * Windows Snapshot (you only need cc65.exe &
+ld65.exe) [to Dir]
 
-Concepts not illustrated:
+Install BizHawk (+ add to Path)
+  * https://github.com/TASEmulators/BizHawk/releases/download/2.6.1/BizHawk-2.6.1-win-x64.zip
+    * All Files [to Dir]
 
-* a 512-byte header for obsolete floppy-based copiers
-* S-CPU/S-SMP communication to play sound effects or change songs
+Install Zip and Unzip (+ add to Path)
+  * https://fossies.org/windows/misc/zip300xn.zip/ 
+    * zip.exe [to Dir]
+  * https://fossies.org/windows/misc/unz600xn.exe/ 
+    * unzip.exe [to Dir]
 
-[SPC700 macro pack]: http://forums.nesdev.com/viewtopic.php?p=121690#p121690
+Install Atom Portable
+  * https://github.com/atom/atom/tree/v1.60.0
+    * All Files [to Dir]
+  
+    * clone repository
+    * close Atom<br><br>
+    * copy .atom Folder from atom-preset.zip [to Dir]
+  
+    * duplicate "atom-build-make.lnk" as "atom-build-make-p.lnk" in same folder [in repo Dir]
+    * change "Start in" Path of "atom-build-make-p.lnk" to Project Directory
+  
+    * start Atom
+  
+\<Optional\> Install Jetbrains Mono
+  * https://www.jetbrains.com/de-de/lp/mono/
+    * Extract and Install "/fonts/ttf/JetBrainsMono-Thin.ttf"
 
-Setting up the build environment
---------------------------------
-Building this demo requires cc65, Python, Pillow, GNU Make, and GNU
-Coreutils.  For detailed instructions to set up a build environment,
-see [nrom-template].
 
-[nrom-template]: https://github.com/pinobatch/nrom-template
 
-Organization of the program
----------------------------
 
-### Include files
+---
+How to add a Folder to Path in Windows 10
+====
 
-* `snes.inc`: Register definitions and useful macros for the S-CPU
-* `global.inc`: S-CPU global variable and function declarations
-* `spc-ca65.inc`: Macro library to produce SPC700 instructions
-* `spc-65c02.inc`: Macro library to use 65C02 syntax with the SPC700
+https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho
 
-### Source code files (65816)
+add the Folders to your User Path on the top (NOT the System Path on the bottom) 
 
-* `snesheader.s`: Super NES internal header
-* `init.s`: PPU and CPU I/O initialization code
-* `main.s`: Main program
-* `bg.s`: Background graphics setup
-* `player.s`: Player sprite graphics setup and movement
-* `ppuclear.s`: Useful subroutines for interacting with the S-PPU
-* `blarggapu.s`: Send a sound driver to the S-SMP 
+---
+Folder Structure 
+====
+[IMPORTANT: no spaces in any path]
+<br><br><br>
+SNESProgramming (root)
 
-### Source code files (SPC700)
+  * atom
+    * portable
+      * atom.exe, ...               <download>
+    * .atom
+      * config.cson, ...            <copy from Repo>
+    
+    
+  * cc65 [!]
+    * cc65.exe                      <download>
+    * ld65.exe                      <download>
+    
+    
+  * emulators
+    * BizHawk [!]
+      * EmuHawk.exe, ...            <download>
+      
+      
+  * projects
+    * SNES-Test-Project-1
+      * makefile, ...               <full repo>
+    
+    
+  * zip [!]
+    * unzip.exe                     <download>
+    * zip.exe                       <download>
 
-* `spcheader.s`: Header for the `.spc` file; unused in `.sfc`
-* `spcimage.s`: Sound driver
 
-Each source code file is made up of subroutines that start with
-`.proc` and end with `.endproc`.  See the [ca65 Users Guide] for
-what these mean.
+<br><br>
+*[!] Folder in "Path"
 
-[ca65 Users Guide]: http://cc65.github.io/doc/ca65.html
-
-The tools
----------
-The `tools` folder contains a few essential command-line programs
-written in Python to convert asset data (graphics, audio, etc.) into
-a form usable by the Super NES.  The makefile contains instructions
-to run these programs whenever the original asset data changes.
-
-* `pilbmp2nes.py` converts bitmap images in PNG or BMP format
-  into tile data usable by several classic video game consoles.
-  It has several options to control the data format; use
-  `pilbmp2nes.py --help` from the command prompt to see them all.
-* `wav2brr.py` converts an uncompressed wave file to the BRR (bit
-  rate reduction) format, a lossy audio codec based on ADPCM used
-  by the S-DSP (the audio chip in the Super NES).
-* `karplus.py` generates a plucked string sound, used for the
-  bass sample.
-* `hihat.py` generates a noise sample.
-
-Greets
-------
-
-* [Super Nintendo Development Wiki] contributors
-* Martin Korth (nocash) for [Fullsnes] doc and [NO$SNS] emulator
-* Shay Green (blargg) for APU examples and SPC700 macro pack
-* Jeremy Chadwick (koitsu) for more code organization tips
-
-[Super Nintendo Development Wiki]: http://wiki.superfamicom.org/
-[Fullsnes]: http://problemkaputt.de/fullsnes.htm
-[NO$SNS]: http://problemkaputt.de/sns.htm
-
-Legal
------
-The demo is distributed under the zlib License, reproduced below:
-
-> Copyright 2017 Damian Yerrick
-> 
-> This software is provided 'as-is', without any express or implied
-> warranty.  In no event will the authors be held liable for any
-> damages arising from the use of this software.
-> 
-> Permission is granted to anyone to use this software for any
-> purpose, including commercial applications, and to alter it and
-> redistribute it freely, subject to the following restrictions:
-> 
-> 1. The origin of this software must not be misrepresented; you must
->    not claim that you wrote the original software. If you use this
->    software in a product, an acknowledgment in the product
->    documentation would be appreciated but is not required.
-> 
-> 2. Altered source versions must be plainly marked as such, and must
->    not be misrepresented as being the original software.
-> 
-> 3. This notice may not be removed or altered from any source
->    distribution.
-
-A work's "source" form is the preferred form of a work for making
-modifications to it.
+---
+MORE INFO: "https://github.com/pinobatch/nrom-template/"
