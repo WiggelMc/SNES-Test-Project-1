@@ -31,8 +31,9 @@ export function provideBuilder() {
   const gfortranErrorMatch = '(?<file>[^:\\n]+):(?<line>\\d+):(?<col>\\d+):[\\s\\S]+?Error: (?<message>.+)';
   const ocamlErrorMatch = '(?<file>[\\/0-9a-zA-Z\\._\\-]+)", line (?<line>\\d+), characters (?<col>\\d+)-(?<col_end>\\d+):\\n(?<message>.+)';
   const golangErrorMatch = '(?<file>([A-Za-z]:[\\/])?[^:\\n]+):(?<line>\\d+):\\s*(?<message>.*error.+)';
+  const cc65ErrorMatch = '(?<file>([A-Za-z]:[\\/])?[^:\\n]+\\.[^:\\n]+):(?<line>\\d+):\\s*(?<message>.*)';
   const errorMatch = [
-    gccErrorMatch, gfortranErrorMatch, ocamlErrorMatch, golangErrorMatch
+    gccErrorMatch, gfortranErrorMatch, ocamlErrorMatch, golangErrorMatch, cc65ErrorMatch
   ];
 
   const gccWarningMatch = '(?<file>([A-Za-z]:[\\/])?[^:\\n]+):(?<line>\\d+):(?<col>\\d+):\\s*(warning):\\s*(?<message>.+)';
