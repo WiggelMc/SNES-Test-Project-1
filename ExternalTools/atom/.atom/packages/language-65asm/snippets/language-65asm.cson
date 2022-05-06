@@ -1,4 +1,0 @@
-'.source.assembly.6502':
-  'Subroutine':
-    'prefix': 'sub'
-    'body': '$1 SUBROUTINE\n\t$2\n\trts\n'
