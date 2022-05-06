@@ -1,0 +1,62 @@
+{
+  "_from": "https://www.atom.io/api/packages/click-bookmarks/versions/0.2.3/tarball",
+  "_id": "click-bookmarks@0.2.3",
+  "_inBundle": false,
+  "_integrity": "sha512-yXl+HRRu+/HL3de2VAvoPXGnaP9oDybwV/jKbl43hQjJlpApktfLblbUJilOBhKKbVspvMmeIBfWztQzPDtvOA==",
+  "_location": "/click-bookmarks",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/click-bookmarks/versions/0.2.3/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/click-bookmarks/versions/0.2.3/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/click-bookmarks/versions/0.2.3/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/click-bookmarks/versions/0.2.3/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/click-bookmarks/versions/0.2.3/tarball",
+  "_shasum": "ce86ef3a16eaf81ec1878e818ae7cae287fcfa33",
+  "_spec": "https://www.atom.io/api/packages/click-bookmarks/versions/0.2.3/tarball",
+  "_where": "C:\\Users\\kimhh\\AppData\\Local\\Temp\\apm-install-dir-202245-23120-1j5qwpw.3zju",
+  "bugs": {
+    "url": "https://github.com/troskater/atom-click-bookmarks/issues"
+  },
+  "bundleDependencies": false,
+  "configSchema": {
+    "eventType": {
+      "title": "Toggle Event Type",
+      "description": "The type of click event used to toggle the bookmark.",
+      "type": "string",
+      "default": "left-click",
+      "enum": [
+        "left-click",
+        "alt+left-click",
+        "middle-click"
+      ]
+    }
+  },
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Adds ability to toggle line bookmarks in the gutter with a click.",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "homepage": "https://github.com/troskater/atom-click-bookmarks#readme",
+  "keywords": [
+    "gutter",
+    "bookmark",
+    "mark",
+    "line",
+    "click"
+  ],
+  "license": "MIT",
+  "main": "./lib/click-bookmarks",
+  "name": "click-bookmarks",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/troskater/atom-click-bookmarks.git"
+  },
+  "version": "0.2.3"
+}

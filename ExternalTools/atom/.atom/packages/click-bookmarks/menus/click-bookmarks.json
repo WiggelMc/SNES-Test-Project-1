@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Click Bookmarks: Toggle Event Type",
+        "command": "click-bookmarks:toggle-event-type"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Click Bookmarks",
+          "submenu": [
+            {
+              "label": "Toggle Event Type",
+              "command": "click-bookmarks:toggle-event-type"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "_from": "https://www.atom.io/api/packages/minimap-plus/versions/5.0.0/tarball",
+  "_id": "minimap-plus@5.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-3Oz9zj3A0NZKaVRR4gD/aw6mqfpp1bJ00GYM1BEn4P1tNw1h592mSKARdMTP6fQFAtDoRdrIeLWCjVbnAzapMg==",
+  "_location": "/minimap-plus",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/minimap-plus/versions/5.0.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/minimap-plus/versions/5.0.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/minimap-plus/versions/5.0.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/minimap-plus/versions/5.0.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/minimap-plus/versions/5.0.0/tarball",
+  "_shasum": "d84450417fcf20bb5e3b3c4ce09719d74f646cf0",
+  "_spec": "https://www.atom.io/api/packages/minimap-plus/versions/5.0.0/tarball",
+  "_where": "C:\\Users\\kimhh\\AppData\\Local\\Temp\\apm-install-dir-202245-24392-1cpyvet.6ll7",
+  "activationHooks": [
+    "core:loaded-shell-environment"
+  ],
+  "author": {
+    "name": "Amin Yahyaabadi",
+    "email": "aminyahyaabadi74@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/atom-ide-community/minimap-plus/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Amin Yahyaabadi",
+      "email": "aminyahyaabadi74@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "atom-package-deps": "6.0.0"
+  },
+  "deprecated": false,
+  "description": "A preview of the full source code.",
+  "engines": {
+    "atom": ">=1.13.0"
+  },
+  "homepage": "https://github.com/atom-ide-community/minimap-plus#readme",
+  "keywords": [
+    "minimap",
+    "overview"
+  ],
+  "license": "MIT",
+  "main": "./src/main",
+  "name": "minimap-plus",
+  "package-deps": [
+    "minimap"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atom-ide-community/minimap-plus.git"
+  },
+  "version": "5.0.0"
+}

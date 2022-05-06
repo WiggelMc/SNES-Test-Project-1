@@ -1,0 +1,62 @@
+"*":
+  "autocomplete-plus":
+    backspaceTriggersAutocomplete: true
+    confirmCompletion: "tab always, enter when suggestion explicitly selected"
+    minimumWordLength: 4
+  build:
+    refreshOnShowTargetList: true
+    saveOnBuild: true
+    scrollOnError: true
+  "build-make": {}
+  "click-bookmarks": {}
+  core:
+    customFileTypes:
+      "source.assembly.65816.cc65-816-toolchain": [
+        "inc"
+        "s"
+        "lst"
+      ]
+    disabledPackages: [
+      "deprecation-cop"
+    ]
+    packagesWithKeymapsDisabled: []
+    telemetryConsent: "no"
+    uriHandlerRegistration: "always"
+  "custom-invisibles":
+    eolActive: false
+  editor:
+    fontFamily: "Jetbrains Mono Thin, Menlo, Consolas, DejaVu Sans Mono, monospace"
+    fontSize: 18
+    invisibles:
+      eol: " "
+  "exception-reporting":
+    userId: "b34adf64-1223-4b1a-8a3a-b3fca12bf229"
+  "git-diff":
+    showIconsInEditorGutter: true
+  "mcfunction-novum":
+    showPopup: false
+  minimap:
+    plugins:
+      bookmarks: true
+      bookmarksDecorationsZIndex: 0
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      "google-repo-diff": true
+      "google-repo-diffDecorationsZIndex": 0
+      "gpool-diff": true
+      "gpool-diffDecorationsZIndex": 1
+  "minimap-git-diff": {}
+  "show-invisibles-plus":
+    placeholders:
+      range: "selection"
+  "terminal-plus":
+    core:
+      shell: "C:\\Program Files\\Git\\git-bash.exe"
+  "trailing-spaces": {}
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
+    ignoreWhitespaceOnCurrentLine: false
+    keepMarkdownLineBreakWhitespace: false
+    removeTrailingWhitespace: false

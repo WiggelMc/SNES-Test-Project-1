@@ -1,0 +1,41 @@
+{
+  "_from": "https://www.atom.io/api/packages/language-65asm/versions/10.5.0/tarball",
+  "_id": "language-65asm@10.5.0",
+  "_inBundle": false,
+  "_integrity": "sha512-1vp1WETCOwdhja3DAf6WnnbrubHOPIUwbZfzDGvURab+XmZxnqV5swZyCxi/39DEnkohmscJzDXerLi1M4JRaw==",
+  "_location": "/language-65asm",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "remote",
+    "raw": "https://www.atom.io/api/packages/language-65asm/versions/10.5.0/tarball",
+    "rawSpec": "https://www.atom.io/api/packages/language-65asm/versions/10.5.0/tarball",
+    "saveSpec": "https://www.atom.io/api/packages/language-65asm/versions/10.5.0/tarball",
+    "fetchSpec": "https://www.atom.io/api/packages/language-65asm/versions/10.5.0/tarball"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://www.atom.io/api/packages/language-65asm/versions/10.5.0/tarball",
+  "_shasum": "c00ccb7f58bc0560ba7743ad0436e8abad4f9808",
+  "_spec": "https://www.atom.io/api/packages/language-65asm/versions/10.5.0/tarball",
+  "_where": "C:\\Users\\kimhh\\AppData\\Local\\Temp\\apm-install-dir-2021325-3520-1fbw636.lvhw",
+  "bugs": {
+    "url": "https://github.com/MatthewCallis/language-65asm/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "Adds syntax highlighting to 65816/65C816/65802/6502/65C02 files in Atom, with extra support for various compilers.",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "homepage": "https://github.com/MatthewCallis/language-65asm#readme",
+  "license": "MIT",
+  "name": "language-65asm",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MatthewCallis/language-65asm.git"
+  },
+  "version": "10.5.0"
+}
