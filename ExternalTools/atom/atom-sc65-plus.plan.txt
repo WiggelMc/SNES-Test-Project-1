@@ -1,0 +1,25 @@
+modular support for asm syntax
+
+    65816 module
+    ...
+1   Stored with instructions, addressing modes, opcodes and timings (even conditional to other stuff)
+    index values within files on change
+  
+  
+2   Show Layer and instruction amount of .lst File on Left Side of minimap
+    
+
+
+Idea Style Documentation (Constants, Labels, Functions, Macros, ...)
+
+1   Documentation Window on Hover <ON/OFF for types>
+2   GoTo Declaration <Disable?>
+2   Highlight same var on Cursor <ON/OFF>
+3   Syntax Highlight based on type (macro vs label vs constant) <ON/OFF>
+  
+4   Precalculate Values (show comment like) <ON/OFF for different sorts of calculations>
+  
+5   Find Usages <Disable?>
+  
+^
+Priority
