@@ -1,1 +1,0 @@
-obj/snes/snesheader.o inclst/snes/snesheader.d: src/snes.inc

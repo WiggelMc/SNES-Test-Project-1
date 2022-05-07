@@ -1,1 +1,0 @@
-obj/snes/bg.o inclst/snes/bg.d: src/snes.inc src/global.inc obj/snes/bggfx.chrgb

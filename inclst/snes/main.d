@@ -1,1 +1,0 @@
-obj/snes/main.o inclst/snes/main.d: src/snes.inc src/global.inc

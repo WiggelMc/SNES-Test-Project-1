@@ -1,1 +1,0 @@
-obj/snes/player.o inclst/snes/player.d: src/snes.inc src/global.inc obj/snes/swinging2.chrsfc

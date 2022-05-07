@@ -31,9 +31,9 @@ export function provideBuilder() {
   const gfortranErrorMatch = '(?<file>[^:\\n]+):(?<line>\\d+):(?<col>\\d+):[\\s\\S]+?Error: (?<message>.+)';
   const ocamlErrorMatch = '(?<file>[\\/0-9a-zA-Z\\._\\-]+)", line (?<line>\\d+), characters (?<col>\\d+)-(?<col_end>\\d+):\\n(?<message>.+)';
   const golangErrorMatch = '(?<file>([A-Za-z]:[\\/])?[^:\\n]+):(?<line>\\d+):\\s*(?<message>.*error.+)';
-  const cc65ErrorMatch = '(?<file>([A-Za-z]:[\\/])?[^:\\n]+\\.[^:\\n]+):(?<line>\\d+):\\s*(?<message>.*)';
+  const cc65ErrorMatch = '(?<file>([A-Za-z]:[\\/])?[^:\\n]+\\.[^:\\n]+):(?<line>\\d+): Error:\\s*(?<message>.*)';
   const errorMatch = [
-    gccErrorMatch, gfortranErrorMatch, ocamlErrorMatch, golangErrorMatch, cc65ErrorMatch
+    cc65ErrorMatch
   ];
 
   const gccWarningMatch = '(?<file>([A-Za-z]:[\\/])?[^:\\n]+):(?<line>\\d+):(?<col>\\d+):\\s*(warning):\\s*(?<message>.+)';
@@ -60,10 +60,12 @@ export function provideBuilder() {
     }
 
     settings() {
+	  const jobArg = `-j${atom.config.get('build-make.jobs')}`
+		
       const defaultTarget = {
         exec: atom.config.get('build-make.gitBashPath'),
         name: 'GNU Make: default (no target)',
-        args: ["-c","make"],
+        args: ["-c","make "+jobArg],
         sh: false,
         errorMatch: errorMatch,
         warningMatch: warningMatch
@@ -79,7 +81,7 @@ export function provideBuilder() {
           .filter( (elem, pos, array) => (array.indexOf(elem) === pos) )
           .map(target => ({
             exec: atom.config.get('build-make.gitBashPath'),
-            args: ["-c","make "+target],
+            args: ["-c","make "+jobArg+" "+target],
             name: `GNU Make: ${target}`,
             sh: false,
             errorMatch: errorMatch,
