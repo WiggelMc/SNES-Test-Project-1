@@ -21,13 +21,15 @@ objlist = \
   ppuclear blarggapu spcimage musicseq
 objlistspc = \
   spcheader spcimage musicseq
-brrlist = \
-  karplusbassloop hat kickgen decentsnare
+	
+#Dependencies for spc-list will not be automatically loaded
+	
 
 AS65 := ca65
 LD65 := ld65
 objdir := obj/snes
 lstdir := lst/snes
+inclstdir := inclst/snes
 srcdir := src
 imgdir := tilesets
 
@@ -69,12 +71,12 @@ wincwd := $(shell pwd | sed -e "s'/'\\\\\\\\'g")
 # NO$SNS in Wine, you should move run above nocash-run.
 
 
+
 run: $(title).sfc
 	$(SNESEMU) $(mkfile_dir)$<
 
 build-only: $(title).sfc
 	echo "BUILD COMPLETE:" $<
-	echo $(shell pwd)
 
 load-only:
 	$(SNESEMU) $(mkfile_dir)$(title).sfc
@@ -98,11 +100,11 @@ all: $(title).sfc $(title).spc
 clean:
 	-rm $(objdir)/*.o $(objdir)/*.chrsfc $(objdir)/*.chrgb
 	-rm $(objdir)/*.wav $(objdir)/*.brr $(objdir)/*.s
-	-rm $(objdir)/*.lst $(lstdir)/*.lst
+	-rm $(objdir)/*.lst $(lstdir)/*.lst $(inclstdir)/*.inclst
 
 dist: zip
 zip: $(title)-$(version).sc.zip
-$(title)-$(version).sc.zip: zip.in all README.md $(objdir)/index.txt
+$(title)-$(version).sc.zip: zip.in all README.md $(objdir)/index.txt $(lstdir)/index.txt $(inclstdir)/index.txt
 	$(PY) tools/zipup.py $< $(title)-$(version).sc -o $@
 	#-advzip -z3 $@
 
@@ -113,14 +115,18 @@ zip.in:
 	echo $(title).sfc >> $@
 	echo $(title).spc >> $@
 
-$(objdir)/index.txt: makefile
+$(objdir)/index.txt $(lstdir)/index.txt $(inclstdir)/index.txt: makefile
 	echo "Files produced by build tools go here. (This file's existence forces the unzip tool to create this folder.)" > $@
 
 # Rules for ROM
 
+#Generate INCLUDE LIST FILES
+.PRECIOUS: $(inclstdir)/%.inclst
+$(inclstdir)/%.inclst: $(srcdir)/%.s
+	$(PY) tools/generateIncLst.py $< $@ $(objdir)/$(*F).o
+
 objlisto = $(foreach o,$(objlist),$(objdir)/$(o).o)
 objlistospc = $(foreach o,$(objlistspc),$(objdir)/$(o).o)
-brrlisto = $(foreach o,$(brrlist),$(objdir)/$(o).brr)
 
 map.txt $(title).sfc: lorom256k.cfg $(objlisto)
 	$(LD65) -o $(title).sfc --dbgfile $(title).dbg -m map.txt -C $^
@@ -129,22 +135,12 @@ map.txt $(title).sfc: lorom256k.cfg $(objlisto)
 spcmap.txt $(title).spc: spc.cfg $(objlistospc)
 	$(LD65) -o $(title).spc -m spcmap.txt -C $^
 
-$(objdir)/%.o: $(srcdir)/%.s $(srcdir)/snes.inc $(srcdir)/global.inc
+
+$(objdir)/%.o: $(srcdir)/%.s $(inclstdir)/%.inclst
 	$(AS65) -l $(lstdir)/$(*F).lst -g $< -o $@
 
 $(objdir)/%.o: $(objdir)/%.s
 	$(AS65) -l $(lstdir)/$(*F).lst -g $< -o $@
-
-$(objdir)/mktables.s: tools/mktables.py
-	$< > $@
-
-# Files that depend on extra included files
-$(objdir)/bg.o: \
- $(objdir)/bggfx.chrgb
-$(objdir)/player.o: \
- $(objdir)/swinging2.chrsfc
-$(objdir)/spcimage.o: $(brrlisto)
-$(objdir)/musicseq.o $(objdir)/spcimage.o: src/pentlyseq.inc
 
 # Rules for CHR data
 
@@ -171,3 +167,7 @@ $(objdir)/karplusbass.wav: tools/karplus.py
 	$(PY) $< -o $@ -n 1024 -p 64 -r 4186 -e square:1:4 -a 30000 -g 1.0 -f .5
 $(objdir)/hat.wav: tools/makehat.py
 	$(PY) $< $@
+
+
+#Load INCLUDE LIST FILES
+-include $(foreach o,$(objlist),$(inclstdir)/$(o).inclst)

@@ -1,4 +1,5 @@
-.include "snes.inc"
+.include "snes.inc" ; ""
+;.include "snestest.inc" ; ""
 .include "global.inc"
 .smart
 
