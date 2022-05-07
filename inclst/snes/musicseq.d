@@ -1,0 +1,1 @@
+obj/snes/musicseq.o inclst/snes/musicseq.d: src/pentlyseq.inc

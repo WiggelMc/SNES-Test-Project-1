@@ -8,8 +8,8 @@
 !/obj/*/index.txt
 /lst/snes/*
 !/lst/*/index.txt
-/inclst/snes/*
-!/inclst/*/index.txt
+/dependencies/snes/*
+!/dependencies/*/index.txt
 /zip.in
 /map.txt
 /spcmap.txt

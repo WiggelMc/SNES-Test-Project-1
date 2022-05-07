@@ -29,7 +29,7 @@ AS65 := ca65
 LD65 := ld65
 objdir := obj/snes
 lstdir := lst/snes
-inclstdir := inclst/snes
+depdir := dependencies/snes
 srcdir := src
 imgdir := tilesets
 
@@ -100,11 +100,11 @@ all: $(title).sfc $(title).spc
 clean:
 	-rm $(objdir)/*.o $(objdir)/*.chrsfc $(objdir)/*.chrgb
 	-rm $(objdir)/*.wav $(objdir)/*.brr $(objdir)/*.s
-	-rm $(objdir)/*.lst $(lstdir)/*.lst $(inclstdir)/*.inclst
+	-rm $(objdir)/*.lst $(lstdir)/*.lst $(depdir)/*.d
 
 dist: zip
 zip: $(title)-$(version).sc.zip
-$(title)-$(version).sc.zip: zip.in all README.md $(objdir)/index.txt $(lstdir)/index.txt $(inclstdir)/index.txt
+$(title)-$(version).sc.zip: zip.in all README.md $(objdir)/index.txt $(lstdir)/index.txt $(depdir)/index.txt
 	$(PY) tools/zipup.py $< $(title)-$(version).sc -o $@
 	#-advzip -z3 $@
 
@@ -115,15 +115,15 @@ zip.in:
 	echo $(title).sfc >> $@
 	echo $(title).spc >> $@
 
-$(objdir)/index.txt $(lstdir)/index.txt $(inclstdir)/index.txt: makefile
+$(objdir)/index.txt $(lstdir)/index.txt $(depdir)/index.txt: makefile
 	echo "Files produced by build tools go here. (This file's existence forces the unzip tool to create this folder.)" > $@
 
 # Rules for ROM
 
 #Generate INCLUDE LIST FILES
-.PRECIOUS: $(inclstdir)/%.inclst
-$(inclstdir)/%.inclst: $(srcdir)/%.s
-	$(PY) tools/generateIncLst.py $< $@ $(objdir)/$(*F).o
+.PRECIOUS: $(depdir)/%.d
+$(depdir)/%.d: $(srcdir)/%.s
+	$(PY) tools/generatedependencies.py $< $@ $(objdir)/$(*F).o
 
 objlisto = $(foreach o,$(objlist),$(objdir)/$(o).o)
 objlistospc = $(foreach o,$(objlistspc),$(objdir)/$(o).o)
@@ -136,7 +136,7 @@ spcmap.txt $(title).spc: spc.cfg $(objlistospc)
 	$(LD65) -o $(title).spc -m spcmap.txt -C $^
 
 
-$(objdir)/%.o: $(srcdir)/%.s $(inclstdir)/%.inclst
+$(objdir)/%.o: $(srcdir)/%.s $(depdir)/%.d
 	$(AS65) -l $(lstdir)/$(*F).lst -g $< -o $@
 
 $(objdir)/%.o: $(objdir)/%.s
@@ -170,4 +170,4 @@ $(objdir)/hat.wav: tools/makehat.py
 
 
 #Load INCLUDE LIST FILES
--include $(foreach o,$(objlist),$(inclstdir)/$(o).inclst)
+-include $(foreach o,$(objlist),$(depdir)/$(o).d)
