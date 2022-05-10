@@ -20,6 +20,11 @@ Idea Style Documentation (Constants, Labels, Functions, Macros, ...)
 4   Precalculate Values (show comment like) <ON/OFF for different sorts of calculations>
   
 5   Find Usages <Disable?>
+
+    Modular Shortcuts and Hiding of Boilerplate
+      C+Circle::radius+Point::pX --> C.radius.pX (Visual Only)
+      C. -> show Options for Circle
+      C.radius. -> show Options for Point
   
 ^
 Priority

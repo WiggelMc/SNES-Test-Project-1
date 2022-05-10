@@ -16,6 +16,7 @@
 /*.sfc
 /*.spc
 /*.dbg
+/*.tass
 /*.sc.zip
 __pycache__/
 *.pyc
