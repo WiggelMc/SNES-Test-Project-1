@@ -44,6 +44,7 @@ ifndef SNESEMU
 
 SNESEMU := EmuHawk
 endif
+SNESEMUALT := Mesen-S_ozihack
 
 # game-music-emu by blargg et al.
 # Using paplay-based wrapper from
@@ -74,6 +75,9 @@ wincwd := $(shell pwd | sed -e "s'/'\\\\\\\\'g")
 
 run: $(title).sfc
 	$(SNESEMU) $(mkfile_dir)$<
+	
+run-m: $(title).sfc
+	$(SNESEMUALT) $(mkfile_dir)$<
 
 build-only: $(title).sfc
 	echo "BUILD COMPLETE:" $<
@@ -81,6 +85,8 @@ build-only: $(title).sfc
 load-only:
 	$(SNESEMU) $(mkfile_dir)$(title).sfc
 
+load-only-m:
+	$(SNESEMU) $(mkfile_dir)$(title).sfc
 
 
 
