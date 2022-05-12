@@ -86,7 +86,7 @@ load-only:
 	$(SNESEMU) $(mkfile_dir)$(title).sfc
 
 load-only-m:
-	$(SNESEMU) $(mkfile_dir)$(title).sfc
+	$(SNESEMUALT) $(mkfile_dir)$(title).sfc
 
 
 
